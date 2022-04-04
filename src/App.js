@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 import Users from "./Components/Users";
+import AddUserForm from "./Components/AddUserForm";
 
 class App extends Component {
   constructor(props){
@@ -27,12 +28,21 @@ class App extends Component {
       ]
     }
   }
+
+  AddNewUser = (user) => {
+    this.setState({
+      users: [...this.state.users, user]
+    })
+  }
+
   render() {
     return (
       <div>
-      <Container>
+      <Container style={{marginTop : "1rem"}}>
         <Row>
-          <Col>Form</Col>
+          <Col md='4'>
+            <AddUserForm AddUser={this.AddNewUser} />
+          </Col>
           <Col><Users userData = {this.state.users} /></Col>
         </Row>
       </Container>
